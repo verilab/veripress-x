@@ -1,3 +1,3 @@
 # VeriPress X
 
-Use different technologies to implement basic functions of VeriPress.
+本项目为实现 VeriPress 相似功能的 Java + SpringBoot + FreeMaker + JPA 技术栈版本。
