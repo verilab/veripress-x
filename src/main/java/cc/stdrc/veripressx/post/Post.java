@@ -22,7 +22,7 @@ public class Post {
     private String title;
 
     @Column(name = "pubdate", nullable = false)
-    private Date publishDate;
+    private Date publishedDate;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
@@ -37,9 +37,9 @@ public class Post {
         this(title, new Date(), content, user);
     }
 
-    public Post(String title, Date publishDate, String content, User user) {
+    public Post(String title, Date publishedDate, String content, User user) {
         this.title = title;
-        this.publishDate = publishDate;
+        this.publishedDate = publishedDate;
         this.content = content;
         this.user = user;
     }
@@ -60,12 +60,12 @@ public class Post {
         this.title = title;
     }
 
-    public Date getPublishDate() {
-        return publishDate;
+    public Date getPublishedDate() {
+        return publishedDate;
     }
 
-    public void setPublishDate(Date publishDate) {
-        this.publishDate = publishDate;
+    public void setPublishedDate(Date publishedDate) {
+        this.publishedDate = publishedDate;
     }
 
     public String getContent() {

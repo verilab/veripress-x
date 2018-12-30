@@ -65,7 +65,10 @@ public class PostController {
     }
 
     @GetMapping("/post/new")
-    public String newPostGET() {
+    public String newPostGET(@SessionAttribute(required = false) User user) {
+        if (user == null) {
+            return "redirect:/login";
+        }
         return TEMPLATE_NAME_NEW_POST;
     }
 

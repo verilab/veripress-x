@@ -1,19 +1,18 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>VeriPress X</title>
-</head>
-<body>
-<div>
-    <a href="/">首页</a>
-</div>
+<#include "layout.ftl" />
 
-<div>${post.user.nickname}:</div>
-<div>
-    ${post.contentHtml}
-</div>
-</body>
-</html>
+<#macro head>
+    <@head_base />
+    <title>${post.title} - VeriPress X</title>
+</#macro>
+
+<#macro main>
+    <article class="article">
+        <h2 class="article-title">${post.title}</h2>
+        <#include "meta.ftl" />
+        <div class="content">
+            ${post.contentHtml}
+        </div>
+    </article>
+</#macro>
+
+<@generate_page />

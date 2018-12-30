@@ -91,6 +91,12 @@ public class RegisterController {
             return TEMPLATE_NAME;
         }
 
+        if (userRepository.existsByUsername(form.getUsername())) {
+            errors.rejectValue("username", "", "用户名已被注册");
+            ViewUtils.setErrors(model, errors);
+            return TEMPLATE_NAME;
+        }
+
         User user = userRepository.saveAndFlush(form.toModel());
         if (user != null && user.getId() > 0) {
             session.setAttribute("user", user);

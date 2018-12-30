@@ -1,11 +1,23 @@
 <#include "layout.ftl" />
 
+<#macro head>
+    <@head_base />
+    <#if RequestParameters.page??>
+        <title>Page ${RequestParameters.page} - VeriPress X</title>
+    <#else>
+        <title>VeriPress X</title>
+    </#if>
+</#macro>
+
 <#macro main>
     <#list posts as post>
         <article class="article">
             <h2 class="article-title"><a href="/post/${post.id}">${post.title}</a></h2>
-            <div class="content">
+            <#include "meta.ftl" />
+            <div class="content limit-height">
                 ${post.contentHtml}
+                <div class="hide-article-box"></div>
+                <a href="/post/${post.id}" class="fill-link">link</a>
             </div>
         </article>
     <#else>

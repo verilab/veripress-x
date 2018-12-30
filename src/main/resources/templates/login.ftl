@@ -1,29 +1,32 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>登录</title>
-</head>
-<body>
-<form action="/login" method="post">
-    <div>
-        <label for="login-username">用户名:</label>
-        <input type="text" id="login-username" name="username">
-    </div>
-    <div>
-        <label for="login-password">密码:</label>
-        <input type="password" id="login-password" name="password">
-    </div>
-    <button type="submit">登录</button>
-    <#if errors??>
-        <div style="color: red;">
-            <#list errors as error>
-                <div>${error}</div>
-            </#list>
+<#include "layout.ftl" />
+
+<#macro head>
+    <@head_base />
+    <title>登录 - VeriPress X</title>
+</#macro>
+
+<#macro main>
+    <article class="article">
+        <h2 class="article-title">登录</h2>
+        <div class="content">
+            <form action="/login" method="post" style="width: 240px;">
+                <input type="text" name="username" placeholder="用户名">
+                <br>
+                <input type="password" name="password" placeholder="密码">
+                <br>
+                <input type="submit" value="登录">
+
+                <#if errors??>
+                    <div class="errors">
+                        <#list errors as error>
+                            <span>${error}</span>
+                            <#sep><br></#sep>
+                        </#list>
+                    </div>
+                </#if>
+            </form>
         </div>
-    </#if>
-</form>
-</body>
-</html>
+    </article>
+</#macro>
+
+<@generate_page />

@@ -31,8 +31,11 @@ ul, ol {
     padding-left: 1.2em;
 }
 
+code, pre, textarea {
+    font-family: 'Microsoft YaHei Mono', Consolas, "Liberation Mono", Menlo, Courier, monospace !important;
+}
+
 code, pre {
-    font-family: 'Microsoft YaHei Mono', Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-size: 90%;
 }
 
@@ -144,6 +147,10 @@ img {
     color: #e65100;
 }
 
+.content {
+    position: relative;
+}
+
 .content h1 a.anchor::before,
 .content h2 a.anchor::before,
 .content h3 a.anchor::before,
@@ -220,6 +227,63 @@ img {
     padding-left: 1rem;
 }
 
+.content.limit-height {
+    max-height: 200px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.content .hide-article-box {
+    position: absolute;
+    bottom: -1px;
+    z-index: 999;
+    width: 100%;
+    height: 30%;
+    background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0) 0%, #fff 70%);
+}
+
+.content .fill-link {
+    position: absolute;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    text-indent: -9999px;
+    overflow: hidden;
+    top: 0;
+}
+
+.content form {
+    display: block;
+    max-width: 100%;
+}
+
+.content form input,
+.content form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 6px;
+    border: 1px solid rgba(187, 187, 187, 0.6);;
+    border-radius: 4px;
+    outline: none;
+}
+
+.content textarea {
+    min-height: 120px;
+    resize: none;
+}
+
+.content form input[type="submit"] {
+    background-color: #282c34;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.content form .errors {
+    color: #dd434d;
+    font-size: 0.8em;
+}
+
 .pager-container {
     padding-top: 0;
     padding-bottom: 0;
@@ -251,10 +315,10 @@ img {
     margin-left: 2%;
     width: 29%;
     height: auto;
-    background-color: #f6e273;
+    background-color: #6ceec8;
     border-radius: 30px;
     border: 1px solid #31384f;
-    box-shadow: inset 10px 10px 0 0 #f6f6f7, 10px 10px 0 0 #f6e273;
+    box-shadow: inset 10px 10px 0 0 #f6f6f7, 10px 10px 0 0 #6ceec8;
 }
 
 .sidebar-widgets {
