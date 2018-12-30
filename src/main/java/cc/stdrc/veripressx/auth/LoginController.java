@@ -6,7 +6,7 @@ import cc.stdrc.veripressx.utils.ViewUtils;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -52,7 +52,7 @@ class LoginForm {
 @Controller
 public class LoginController {
 
-    private static final String TEMPLATE_NAME = "auth/login";
+    private static final String TEMPLATE_NAME = "login";
 
     private final UserRepository userRepository;
 
@@ -72,16 +72,16 @@ public class LoginController {
 
     @PostMapping(value = "/login")
     public String loginPOST(@Valid @ModelAttribute LoginForm form, Errors errors,
-                            ModelMap map, HttpSession session) {
+                            Model model, HttpSession session) {
         if (errors.hasFieldErrors()) {
-            ViewUtils.setErrors(map, errors);
+            ViewUtils.setErrors(model, errors);
             return TEMPLATE_NAME;
         }
 
         User user = null;
         try {
             user = userRepository.findByUsername(form.getUsername());
-            if (BCrypt.checkpw(form.getPassword(), user.getPasswordHash())) {
+            if (user != null && BCrypt.checkpw(form.getPassword(), user.getPasswordHash())) {
                 session.setAttribute("user", user);
             } else {
                 user = null;
@@ -91,7 +91,7 @@ public class LoginController {
 
         if (user == null) {
             errors.rejectValue("username", "", "用户名或密码错误");
-            ViewUtils.setErrors(map, errors);
+            ViewUtils.setErrors(model, errors);
             return TEMPLATE_NAME;
         }
 

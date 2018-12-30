@@ -1,10 +1,9 @@
 package cc.stdrc.veripressx.user;
 
-import cc.stdrc.veripressx.post.Post;
-
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
 public class User {
@@ -12,17 +11,21 @@ public class User {
     @GeneratedValue
     private Long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, length = 100)
     private String username;
 
-    @Column(name = "password_hash", nullable = false)
+    @Column(nullable = false)
+    private String nickname;
+
+    @Column(nullable = false)
     private String passwordHash;
 
     public User() {
     }
 
-    public User(String username, String passwordHash) {
+    public User(String username, String nickname, String passwordHash) {
         this.username = username;
+        this.nickname = nickname;
         this.passwordHash = passwordHash;
     }
 
@@ -40,6 +43,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getPasswordHash() {

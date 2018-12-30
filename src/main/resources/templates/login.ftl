@@ -18,7 +18,7 @@
     </div>
     <button type="submit">登录</button>
     <#if errors??>
-        <div class="error" style="color: red">
+        <div style="color: red;">
             <#list errors as error>
                 <div>${error}</div>
             </#list>
