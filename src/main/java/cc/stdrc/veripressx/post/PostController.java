@@ -94,4 +94,13 @@ public class PostController {
         response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         return null;
     }
+
+    @RequestMapping(value = "/post/{id}/delete", method = {RequestMethod.GET, RequestMethod.POST})
+    public String deletePostPOST(@PathVariable Long id, @SessionAttribute User user) {
+        Optional<Post> post = postRepository.findById(id);
+        if (post.isPresent() && post.get().getUser().getId().equals(user.getId())) {
+            postRepository.delete(post.get());
+        }
+        return "redirect:/my";
+    }
 }
